@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.order.QgOrderMapper">
+    <insert id="qdtxAddQgOrder">
+        insert into qg_db.qg_order ( userId, stockId,        orderNo,        goodsId,        num,        amount,        status,        aliTradeNo,        createdTime,        updatedTime        )
+        values
+        (#{userId},#{stockId},#{orderNo},#{goodsId},#{num},#{amount}, #{status},#{aliTradeNo},#{createdTime},#{updatedTime} );
+    </insert>
+
+    <select id="getQgOrderListByMap" resultType="QgOrder">
+        select 	id,userId,stockId,orderNo,goodsId,num,amount,status,aliTradeNo,createdTime, updatedTime
+        from qg_order
+        <where>
+            <if test="userId!=null">userId=#{userId}</if>
+            <if test="orderNo!=null">orderNo=#{orderNo}</if>
+            <if test="stockId!=null">stockId=#{stockId}</if>
+            <if test="aliTradeNo!=null">aliTradeNo=#{aliTradeNo}</if>
+            <if test="status!=null">status=#{status}</if>
+        </where>
+        order by createdTime desc
+        limit <choose>
+                <when test="from!=null">#{from}</when>
+                <otherwise>0</otherwise>
+            </choose>,
+            <choose>
+                <when test="size!=null">#{size}</when>
+                <otherwise>5</otherwise>
+            </choose>
+    </select>
+
+    <select id="getQgOrderById" resultType="QgOrder">
+        select 	* from qg_order where id=#{id}
+    </select>
+
+    <select id="queryQgOrderByNo" resultType="QgOrder">
+        select 	* from qg_order where orderNo=#{orderNo}
+    </select>
+
+    <update id="qdtxModifyQgOrder">
+        update qg_db.qg_order
+        <set>
+            <if test="status!=null">status = #{status} ,</if>
+            <if test="aliTradeNo!=null">aliTradeNo = #{aliTradeNo} ,</if>
+            <if test="updatedTime!=null">updatedTime = #{updatedTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select  id="queryPayTimeoutOrder" resultType="QgOrder">
+        SELECT id,stockId
+        FROM qg_order o
+        <where>
+            STATUS=0
+            AND createdTime &lt; DATE_ADD( NOW(), INTERVAL -30 MINUTE);
+        </where>
+    </select>
+</mapper>

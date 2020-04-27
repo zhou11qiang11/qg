@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.taskhis.QgTaskHisMapper">
+    <insert id="saveTask">
+        INSERT INTO qg_task_his
+        (id,
+        createTime,
+        updateTime,
+        deleteTime,
+        taskType,
+        mqExchange,
+        mqRoutingKey,
+        requestBody,
+        `version`,
+        `status`,
+        errorMsg
+        )
+        VALUES
+        (#{id},
+        #{createTime},
+        #{updateTime},
+        #{deleteTime},
+        #{taskType},
+        #{mqExchange},
+        #{mqRoutingKey},
+        #{requestBody},
+        #{version},
+        #{status},
+        #{errorMsg}
+        )
+    </insert>
+
+    <select id="getTaskById" resultType="QgTask">
+        select * from qg_task_his where id=#{id}
+    </select>
+    <!--返回值是0，则锁定失败； 否则锁定成功-->
+    <update id="lockTask">
+        UPDATE qg_task_his
+        SET `version`=`version`+1
+        WHERE id=#{id} AND `version`=#{version}
+    </update>
+
+</mapper>

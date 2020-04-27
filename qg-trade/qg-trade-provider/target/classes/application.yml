@@ -1,0 +1,22 @@
+server:
+  port: 8087
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.40:3307/qg_trade?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: ok
+mybatis:
+  type-aliases-package: com.qg.pojo,com.qg.vo
+  mapper-locations: mappers/*Mapper.xml
+
+dubbo:
+  application:
+    name: qg-goods-provider
+  registry:
+    address: zookeeper://192.168.1.40:2181
+  protocol:
+    name: dubbo
+    port: -1
+  scan:
+    base-packages: com.qg.service

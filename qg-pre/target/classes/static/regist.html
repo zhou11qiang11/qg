@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>注册页面</title>
+		<link  rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<style>
+			#btn-ty.btn-disabled{
+				background-color: #AFAFAF;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="dly">
+				<div class="dly_left"></div>
+				<div class="dly_right">
+					<p class="tit">注册</p>
+						<div class="zc_username">
+							<span class="zc_tit">手机号</span>
+							<input type="text" id="userName" name="userName" class="username" />
+							<!-- for="email"-->
+						</div>
+						<div class="zc_password">
+							<span class="zc_tit">密&nbsp;&nbsp;&nbsp;码</span>
+							<input type="password" id="password" name="password" class="pass_word" />
+							<!-- for="email"-->
+							<label class="error" id="pass_word_error"></label>
+						</div>
+						<div class="zc_password">
+							<span class="zc_tit">确&nbsp;认&nbsp;密&nbsp;码</span>
+							<input type="password" id="repassword" name="repassword" class="pass_word" />
+							<label class="error" id="repass_word_error"></label>
+						</div>
+						<div class="zc_password">
+							<input type="text" id="smscode" name="smscode" class="username" onblur="checksmscode()" />
+							<input type="button" value="发送验证码" onclick="sendsmscode()"/>
+							<label class="error" id="smscode_word_error"></label>
+						</div>
+						<button id="btn-ty" class="btn-ty btn-disabled" onclick="doregist()" disabled>注册</button>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script>
+			function sendsmscode(){
+			    if($("#userName").val()==null || $("#userName").val()==''){
+			        alert("请输入手机号码")
+			        return ;
+				}
+                if($("#password").val()==null || $("#password").val()==''){
+                    alert("请输入密码")
+                    return ;
+                }
+                if($("#repassword").val()!=$("#password").val()){
+                    alert("两次密码不一致")
+                    return ;
+                }
+			    $.ajax({
+					url:"http://localhost:8083/api/sendsmscode",
+					data:{phone:$("#userName").val()},
+					type:"post",
+					dataType:"json",
+					success:function(data){
+						if(data.code==0){
+						    alert("验证码已发送，请注意查收，有效时间60秒");
+						}else {
+						    alert(data.message);
+						}
+					},
+					error:function(){
+					    alert("ajax错误")
+					}
+				});
+			}
+            function checksmscode(){
+                if($("#smscode").val()==null || $("#smscode").val()==''){
+                    return ;
+                }
+                $.ajax({
+                    url:"http://localhost:8083/api/checksmscode",
+                    data:{phone:$("#userName").val(),smscode:$("#smscode").val()},
+                    type:"post",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.code==0){
+                            $("#smscode_word_error").text("正确");
+                            $("#btn-ty").attr("disabled",false).removeClass("btn-disabled");
+                        }else {
+                            $("#smscode_word_error").text(data.message);
+                        }
+                    },
+                    error:function(){
+                        alert("ajax错误")
+                    }
+                });
+            }
+
+            function doregist(){
+                if($("#userName").val()==null || $("#userName").val()==''){
+                    alert("请输入手机号码");
+                    return ;
+                }
+                if($("#password").val()==null || $("#password").val()==''){
+                    alert("请输入密码");
+                    return ;
+                }
+                if($("#repassword").val()!=$("#password").val()){
+                    alert("两次密码不一致");
+                    return ;
+                }
+				$.ajax({
+					url:"http://localhost:8083/api/regist",
+					data:{phone:$("#userName").val(),password:$("#password").val()},
+					type:"post",
+					dataType:"json",
+					success:function(data){
+						if(data.code==0){
+							alert("注册成功");
+							location.href='login.html';
+						}else {
+						   alert(data.message);
+						}
+					},
+					error:function(){
+						alert("ajax错误")
+					}
+				});
+            }
+		</script>
+	</body>
+</html>

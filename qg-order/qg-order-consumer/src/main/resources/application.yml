@@ -1,0 +1,13 @@
+server:
+  port: 8086
+dubbo:
+  consumer:
+    check: false
+  application:
+    name: qg-order-consumer
+  registry:
+    address: zookeeper://192.168.1.40:2181
+  protocol:
+    name: dubbo
+  scan:
+    base-packages: com.qg.controller.order

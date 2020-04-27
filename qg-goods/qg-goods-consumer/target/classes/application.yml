@@ -1,0 +1,17 @@
+server:
+  port: 8084
+spring:
+  redis:
+    password: ok
+    host: 192.168.1.40
+dubbo:
+  consumer:
+    check: false
+  application:
+    name: qg-goods-consumer
+  registry:
+    address: zookeeper://192.168.1.40:2181
+  protocol:
+    name: dubbo
+  scan:
+    base-packages: com.qg
