@@ -54,7 +54,7 @@ function qgGoods() {
 //s
 function flushGoodsIsGet(id){
     $.ajax({
-        url:ReqUrl.GoodsReqUrl()+'/v/flushResult',
+        url:ReqUrl.GoodsReqUrl()+'v/flushResult',
         type: 'post',
         dataType: 'json',
         headers:{

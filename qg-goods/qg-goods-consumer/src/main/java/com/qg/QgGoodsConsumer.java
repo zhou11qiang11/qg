@@ -7,5 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class QgGoodsConsumer {
     public static void main(String[] args) {
         SpringApplication.run(QgGoodsConsumer.class,args);
+        System.out.println("QgGoodsConsumer------------->启动成功");
     }
 }

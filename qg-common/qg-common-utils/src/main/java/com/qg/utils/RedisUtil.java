@@ -9,6 +9,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -25,6 +26,14 @@ public class RedisUtil {
 
     @Resource(name = "redisTemplate")
     ValueOperations<Object, Object> valOpsObj;
+
+
+    //随机数 返回分钟
+    private Random rm = new Random();
+    public long random(int max,int min){
+        int i = rm.nextInt(max)%(max-min+1)+min;
+        return i;
+    }
 
     /**
      * 根据指定key获取String

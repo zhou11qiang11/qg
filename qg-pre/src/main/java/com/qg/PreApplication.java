@@ -7,5 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PreApplication {
     public static void main(String[] args) {
         SpringApplication.run(PreApplication.class,args);
+        System.out.println("PreApplication------------->启动成功");
     }
 }

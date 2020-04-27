@@ -15,8 +15,8 @@ public class IntercepterConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(corsInterceptor).addPathPatterns("/api/**");
-        registry.addInterceptor(tokenIntercepter)
-                .addPathPatterns("/api/**")//要拦截的url
-                .excludePathPatterns("/api/sendsmscode","/api/checksmscode","/api/regist","/api/doLogin");//从拦截的url中要排除的url
+//        registry.addInterceptor(tokenIntercepter)
+//                .addPathPatterns("/api/**")//要拦截的url
+//                .excludePathPatterns("/api/sendsmscode","/api/checksmscode","/api/regist","/api/doLogin");//从拦截的url中要排除的url
     }
 }

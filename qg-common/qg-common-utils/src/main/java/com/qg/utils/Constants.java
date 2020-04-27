@@ -1,6 +1,11 @@
 package com.qg.utils;
 
 public class Constants {
+    //时间
+    public static final int MAX_MINUTES=5;
+    public static final int MIN_MINUTES=1;
+
+
     //抢购的状态
     public static final int STATUS_NO_LOGIN=1;
     public static final int STATUS_QG_DUP=1003;//已抢购过该商品
