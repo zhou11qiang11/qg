@@ -6,6 +6,7 @@ import java.util.Map;
 /**
 * Created by shang-pc on 2015/11/7.
 */
+
 public interface QgGoodsTempStockService {
     /**
      * 根据商品临时库存id查询商品临时库存
