@@ -10,6 +10,7 @@
         <module>qg-order</module>
         <module>qg-trade</module>
         <module>qg-pre</module>
+        <module>qg-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

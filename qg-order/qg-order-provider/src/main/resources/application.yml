@@ -12,11 +12,11 @@ mybatis:
 
 dubbo:
   application:
-    name: qg-goods-provider
+    name: qg-order-provider
   registry:
     address: zookeeper://192.168.1.40:2181
   protocol:
     name: dubbo
     port: -1
-  scan:
-    base-packages: com.qg.service
+  consumer:
+    check: false

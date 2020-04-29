@@ -30,9 +30,9 @@ public class RedisUtil {
 
     //随机数 返回分钟
     private Random rm = new Random();
-    public long random(int max,int min){
-        int i = rm.nextInt(max)%(max-min+1)+min;
-        return i;
+    public Long random(int min,int max){
+        Integer i = rm.nextInt(max)%(max-min+1)+min;
+        return i.longValue();
     }
 
     /**

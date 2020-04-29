@@ -4,7 +4,7 @@
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.qg.mapper.order.QgOrderMapper">
     <insert id="qdtxAddQgOrder">
-        insert into qg_db.qg_order ( userId, stockId,        orderNo,        goodsId,        num,        amount,        status,        aliTradeNo,        createdTime,        updatedTime        )
+        insert into qg_order ( userId, stockId,        orderNo,        goodsId,        num,        amount,        status,        aliTradeNo,        createdTime,        updatedTime        )
         values
         (#{userId},#{stockId},#{orderNo},#{goodsId},#{num},#{amount}, #{status},#{aliTradeNo},#{createdTime},#{updatedTime} );
     </insert>
@@ -21,13 +21,13 @@
         </where>
         order by createdTime desc
         limit <choose>
-                <when test="from!=null">#{from}</when>
-                <otherwise>0</otherwise>
-            </choose>,
-            <choose>
-                <when test="size!=null">#{size}</when>
-                <otherwise>5</otherwise>
-            </choose>
+        <when test="from!=null">#{from}</when>
+        <otherwise>0</otherwise>
+    </choose>,
+        <choose>
+            <when test="size!=null">#{size}</when>
+            <otherwise>5</otherwise>
+        </choose>
     </select>
 
     <select id="getQgOrderById" resultType="QgOrder">
@@ -39,7 +39,7 @@
     </select>
 
     <update id="qdtxModifyQgOrder">
-        update qg_db.qg_order
+        update qg_order
         <set>
             <if test="status!=null">status = #{status} ,</if>
             <if test="aliTradeNo!=null">aliTradeNo = #{aliTradeNo} ,</if>
@@ -53,7 +53,8 @@
         FROM qg_order o
         <where>
             STATUS=0
-            AND createdTime &lt; DATE_ADD( NOW(), INTERVAL -30 MINUTE);
+            AND createdTime &lt; DATE_ADD( NOW(), INTERVAL -30 MINUTE)
         </where>
+        for update
     </select>
 </mapper>

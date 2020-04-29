@@ -1,12 +1,11 @@
 package com.qg.service;
 
-import com.qg.dto.ReturnResult;
 import com.qg.vo.GoodsVo;
+import org.apache.activemq.command.ActiveMQMapMessage;
 
 public interface  LocalGoodsService {
 
     GoodsVo getGoodsById(String id) throws Exception;
 
-    //抢购
-    ReturnResult getGoods(String userId,String goodsId)throws Exception;
+    Integer flushResult(String userId,String goodsId) throws Exception;
 }

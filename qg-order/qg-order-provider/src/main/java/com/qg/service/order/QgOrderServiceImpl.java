@@ -4,16 +4,16 @@ import com.qg.mapper.order.QgOrderMapper;
 import com.qg.pojo.QgOrder;
 import com.qg.service.QgOrderService;
 import org.apache.dubbo.config.annotation.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(version = "1.0.0")
+@Component
 public class QgOrderServiceImpl implements QgOrderService {
-    @Autowired
+    @Resource
     private QgOrderMapper qgOrderMapper;
 
     @Override
