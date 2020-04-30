@@ -1,5 +1,7 @@
 package com.qg.service;
 import com.qg.pojo.QgGoodsTempStock;
+import org.dromara.hmily.annotation.Hmily;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,7 @@ public interface QgGoodsTempStockService {
      * @return 影响行数
      * @throws Exception
      */
+    @Hmily
     public Integer qdtxAddQgGoodsTempStock(QgGoodsTempStock qgGoodsTempStock)throws Exception;
     /**
      * 前端事务：修改商品临时库存

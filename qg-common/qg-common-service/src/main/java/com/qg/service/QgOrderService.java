@@ -1,5 +1,7 @@
 package com.qg.service;
 import com.qg.pojo.QgOrder;
+import org.dromara.hmily.annotation.Hmily;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,7 @@ public interface QgOrderService {
      * @return 影响行数
      * @throws Exception
      */
+    @Hmily
     public Integer qdtxAddQgOrder(QgOrder qgOrder)throws Exception;
     /**
      * 前端事务：修改订单
