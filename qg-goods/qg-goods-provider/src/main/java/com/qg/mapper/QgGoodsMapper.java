@@ -9,4 +9,6 @@ import org.apache.ibatis.annotations.Select;
 public interface QgGoodsMapper {
     @Select("select * from qg_goods where id=#{id}")
     QgGoods getGoodsById(@Param("id")String id);
+
+    Integer qdtxModifyQgGoods(@Param("id") Integer id, @Param("stock") Integer stock);
 }

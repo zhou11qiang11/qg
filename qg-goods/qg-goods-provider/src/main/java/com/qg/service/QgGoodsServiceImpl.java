@@ -35,7 +35,7 @@ public class QgGoodsServiceImpl implements QgGoodsService{
 
     @Override
     public Integer qdtxModifyQgGoods(QgGoods qgGoods) throws Exception {
-        return null;
+        return qgGoodsMapper.qdtxModifyQgGoods(qgGoods.getId().intValue(),qgGoods.getStock());
     }
 
     @Override

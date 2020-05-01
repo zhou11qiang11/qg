@@ -129,7 +129,8 @@ function loadGoodInfo() {
                 var goodsName=goods.goodsName;
                 var price=goods.price;
                 var goodsImg=goods.goodsImg;
-                var percent=(goods.stock-currentStock)*100/goods.stock;
+                // var percent=(goods.stock-currentStock)*100/goods.stock;
+                var percent=(10-goods.stock)*100/10;
                 $("#goodsName").html(goodsName);
                 $("#goodsImg").attr("src",goodsImg);
                 loadPercent(percent+'%',currentStock,'￥'+price,'￥80');
